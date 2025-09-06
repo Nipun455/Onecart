@@ -13,6 +13,25 @@ import orderRoutes from './routes/orderRoutes.js'
 let port = process.env.PORT || 6000
 
 let app = express()
+/* ---- 
+app.use(express.json()) :- 
+this middleware parses incoming requests with JSON payloads makes the data available in req.body
+// without it:
+if the client sends JSON data (e.g from a frontend fetch( or Axios), req.body will be undefined
+*/
+/*---
+app.use(cookieParser())
+This middleware parses cookies attached to  the client request and makes them available in req.cookies
+without it: 
+if a request contains cookies , you'd have to manually parse the cookie header string
+*/
+/*
+express.json() -> handles request body (mainly for post/put) requests with json data.
+cookieParser() -> handles cookies sent in the HTTp request header
+
+cookies are used for thngs like authentication tokens
+JSON body is used for user-submitted data(req.body.email, req.body.password)
+*/
 
 app.use(express.json())
 app.use(cookieParser())

@@ -1,0 +1,27 @@
+{
+  "dependencies": {
+    "concurrently": "^9.2.1"
+  },
+  "name": "5.onecart",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "frontend" : "cd frontend && npm run dev",
+    "backend" : "cd backend && node index.js",
+    "admin" : "cd admin && npm run dev",
+    "dev":"concurrently -n \"frontend,backend,admin\" -c \"bgBlue,bgYellow, bgBlue\" \"npm run frontend\" \"npm run backend\" \"npm run admin\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Virtualcode-yt/5.oneCart.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Virtualcode-yt/5.oneCart/issues"
+  },
+  "homepage": "https://github.com/Virtualcode-yt/5.oneCart#readme",
+  "description": ""
+}

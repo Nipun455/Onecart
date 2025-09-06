@@ -1,28 +1,35 @@
-import jwt from 'jsonwebtoken'
+import jwt from "jsonwebtoken";
 
-const adminAuth = async (req,res,next) => {
+const adminAuth = async (req, res, next) => {
+  try {
+    // Token le from cookie or header
+    let token = req.cookies?.token || req.headers["authorization"];
+
+    if (!token) {
+      return res.status(401).json({ message: "Not Authorized, please login again" });
+    }
+
+    // Agar "Bearer <token>" format me aaya hai toh split karo
+    if (token.startsWith("Bearer ")) {
+      token = token.split(" ")[1];
+    }
+
+    // Verify token
+    let verifyToken;
     try {
-        let {token} = req.cookies
-
-    if(!token) {
-        return res.status(400).json({message:"Not Authorized Login Again"})
-    }
-    
-    let verifyToken =  jwt.verify(token,process.env.JWT_SECRET)
-
-    if(!verifyToken){
-         return res.status(400).json({message:"Not Authorized Login Again, Invalid token"})
-    }
-    req.adminEmail = process.env.ADMIN_EMAIL
-
-    next()
-        
-    } catch (error) {
-           console.log("adminAuth error")
-    return res.status(500).json({message:`adminAuth error ${error}`})
+      verifyToken = jwt.verify(token, process.env.JWT_SECRET);
+    } catch (err) {
+      return res.status(401).json({ message: "Invalid or expired token" });
     }
 
+    // Attach data from token
+    req.adminEmail = verifyToken.email || process.env.ADMIN_EMAIL;
 
-}
+    next();
+  } catch (error) {
+    console.error("adminAuth error:", error);
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
+};
 
-export default adminAuth
+export default adminAuth;

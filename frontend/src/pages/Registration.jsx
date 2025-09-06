@@ -76,9 +76,14 @@ function Registration() {
         <span className='text-[16px]'>Welcome to OneCart, Place your order</span>
 
     </div>
-    <div className='max-w-[600px] w-[90%] h-[500px] bg-[#00000025] border-[1px] border-[#96969635] backdrop:blur-2xl rounded-lg shadow-lg flex items-center justify-center '>
-        <form action="" onSubmit={handleSignup} className='w-[90%] h-[90%] flex flex-col items-center justify-start gap-[20px]'>
-            <div className='w-[90%] h-[50px] bg-[#42656cae] rounded-lg flex items-center justify-center gap-[10px] py-[20px] cursor-pointer' onClick={googleSignup} >
+    <div className='max-w-[600px] w-[90%] h-[500px] bg-[#00000025] border-[1px] 
+    border-[#96969635] backdrop:blur-2xl rounded-lg shadow-lg flex items-center 
+    justify-center '>
+        <form action="" onSubmit={handleSignup} className='w-[90%] h-[90%] 
+        flex flex-col items-center justify-start gap-[20px]'>
+            <div className='w-[90%] h-[50px] bg-[#42656cae] rounded-lg flex 
+            items-center justify-center gap-[10px] py-[20px] cursor-pointer' 
+            onClick={googleSignup} >
                 <img src={google}  alt="" className='w-[20px]'/> Registration with Google
             </div>
             <div className='w-[100%] h-[20px] flex items-center justify-center gap-[10px]'>
